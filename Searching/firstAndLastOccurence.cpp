@@ -9,10 +9,9 @@ int findFirstOccurrence(int arr[], int n, int x)
     {
         int mid = low + (high - low)/2;
 
-        if(arr[mid] == x)
+        if(arr[mid] == x && (mid == 0 || arr[mid-1] < x))
         {
-            res = mid;
-            high = mid - 1;
+            return mid;
         }
         else if(arr[mid] < x)
             low = mid + 1;
@@ -29,16 +28,14 @@ int findLastOccurrence(int arr[], int n, int x)
     while(low <= high)
     {
         int mid = low + (high - low)/2;
-
-        if(arr[mid] == x)
+        if(arr[mid] == x && (mid == n-1 ||arr[mid+1]>x))
         {
-            res = mid;
-            low = mid + 1;
+            return mid;
         }
-        else if(arr[mid] < x)
-            low = mid + 1;
-        else 
+        else if(arr[mid] > x)
             high = mid - 1;
+        else 
+            low = mid + 1;
     }
     return res;
 }

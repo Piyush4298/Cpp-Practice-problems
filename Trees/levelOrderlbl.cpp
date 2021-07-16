@@ -1,14 +1,4 @@
-/*
-I/P:
-            10
-          /    \
-        20      30
-       /  \       \ 
-    40     50      70 
-
-O/P : 10 20 30 40 50 70 
-*/
-
+// level order traversal line by line
 #include<iostream>
 #include<queue>
 using namespace std;
@@ -25,21 +15,26 @@ struct Node
     }
 };
 
-void levelOrderTraversal(Node *root)
+void levelOrderLineByLine(Node *root)
 {
     if(root == NULL)
-        return;
-    queue<Node *> q;
+        return; 
+    queue<Node*> q;
     q.push(root);
     while(!q.empty())
     {
-        Node *curr = q.front();
-        q.pop();
-        cout << curr->data << " ";
-        if(curr->left)
-            q.push(curr->left);
-        if(curr->right)
-            q.push(curr->right);
+        int n = q.size();
+        for(int i = 0; i < n; i++)
+        {
+            Node *curr = q.front();
+            q.pop();
+            cout << curr->data << " ";
+            if(curr->left)
+                q.push(curr->left);
+            if(curr->right)
+                q.push(curr->right);
+        }
+        cout << "\n";
     }
 }
 
@@ -52,7 +47,6 @@ int main()
     root->left->right = new Node(50);
     root->right->right = new Node(70);
 
-    cout << "Level order traversal : \n";
-    levelOrderTraversal(root);
+    levelOrderLineByLine(root);
     return 0;
 }

@@ -6,7 +6,7 @@ I/P:
        /  \       \ 
     40     50      70 
 
-O/P : 10 20 30 40 50 70 
+O/P : 10 30 70
 */
 
 #include<iostream>
@@ -25,7 +25,7 @@ struct Node
     }
 };
 
-void levelOrderTraversal(Node *root)
+void rightViewOfBinaryTree(Node *root)
 {
     if(root == NULL)
         return;
@@ -33,13 +33,18 @@ void levelOrderTraversal(Node *root)
     q.push(root);
     while(!q.empty())
     {
-        Node *curr = q.front();
-        q.pop();
-        cout << curr->data << " ";
-        if(curr->left)
-            q.push(curr->left);
-        if(curr->right)
-            q.push(curr->right);
+        int n = q.size();
+        for(int i = 0; i < n; i++)
+        {
+            Node *curr = q.front();
+            q.pop();
+            if(i == 0)
+                cout << curr->data << " ";
+            if(curr->right)
+                q.push(curr->right);
+            if(curr->left)
+                q.push(curr->left);
+        }
     }
 }
 
@@ -52,7 +57,6 @@ int main()
     root->left->right = new Node(50);
     root->right->right = new Node(70);
 
-    cout << "Level order traversal : \n";
-    levelOrderTraversal(root);
+    rightViewOfBinaryTree(root);
     return 0;
 }

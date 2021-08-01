@@ -1,13 +1,3 @@
-/*
-i/p :   50
-       /   \
-     30     70
-    /  \   /  \
-   10  40 60   80
-
-o/p : YES
-*/
-
 #include<iostream>
 using namespace std;
 
@@ -22,17 +12,7 @@ struct Node
     }
 };
 
-bool isBST(Node *root, int prev)
-{
-    if(root == NULL)
-        return true;
-    if(isBST(root->left, prev) == false)
-        return false;
-    if(root->key <= prev)
-        return false;
-    prev = root->key;
-    return isBST(root->right, prev);
-}
+
 
 int main()
 {
@@ -44,9 +24,7 @@ int main()
     root->right->left = new Node(60);
     root->right->right = new Node(80);
 
-    if(isBST(root, INT_MIN))
-        cout << "YES";
-    else
-        cout << "NO";
+    if(search(root, 10)) cout << "Found !";
+    else cout << "Not found !";
     return 0;
 }

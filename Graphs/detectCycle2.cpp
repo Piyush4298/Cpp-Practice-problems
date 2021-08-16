@@ -1,7 +1,6 @@
 /*Detect cycle in directed graph*/
 #include<iostream>
 #include<queue>
-#include<utility>
 #include<vector>
 using namespace std;
 
